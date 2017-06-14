@@ -10,7 +10,6 @@ var mongoose = require("mongoose");
 var MyPicture = require("./mongoose-db").MyPicture;
 
 // 目标网址
-// var url = 'http://desk.zol.com.cn/meinv/1920x1080/2.html';
 var url = 'http://www.qqtn.com/tx/';
 
 // 本地存储目录
@@ -30,11 +29,9 @@ mkdirp(dir, function(err) {
 request(url, function(error, response, body) {
     if(!error && response.statusCode == 200) {
         var $ = cheerio.load(body);
-        // $('.photo-list-padding a img').each(function() {
          $('a img').each(function() {
             var src = $(this).attr('src');
             var alt = $(this).attr('alt');
-            // src = src.replace(/t_s208x130c5/, 't_s960x600c5');
             links.push(src);
 
             var beta = new MyPicture({

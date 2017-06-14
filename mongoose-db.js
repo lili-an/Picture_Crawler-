@@ -1,7 +1,7 @@
 require('./connect');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-/*定义模式Student_Schema*/
+/*定义模式Picture_Schema*/
 var Picture_Schema = new Schema({
     url: String,
     alt: String,
