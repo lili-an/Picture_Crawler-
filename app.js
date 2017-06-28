@@ -9,8 +9,11 @@ var async = require('async');
 var mongoose = require("mongoose");
 var MyPicture = require("./mongoose-db").MyPicture;
 
+// nan nv katong fengjing weixin
+var num = 3;
+
 // 目标网址
-var url = 'http://www.qqtn.com/tx/';
+var url = 'http://www.woyaogexing.com/touxiang/fengjing/index_'+num+'.html';
 
 // 本地存储目录
 var dir = './images';
@@ -29,9 +32,9 @@ mkdirp(dir, function(err) {
 request(url, function(error, response, body) {
     if(!error && response.statusCode == 200) {
         var $ = cheerio.load(body);
-         $('a img').each(function() {
+         $('.txList img').each(function() {
             var src = $(this).attr('src');
-            var alt = $(this).attr('alt');
+            var alt = $(this).parent().next().text();
             links.push(src);
 
             var beta = new MyPicture({
@@ -63,7 +66,7 @@ var download = function(url, dir, filename){
     });
 };
 
- MyPicture.find({}, function(err, docs) {
-        console.log(docs);
-        /*对docs进行操作*/
-    });
+ // MyPicture.find({}, function(err, docs) {
+ //        console.log(docs);
+ //        /*对docs进行操作*/
+ //    });
